@@ -68,7 +68,7 @@
       type="submit" 
       label="Забронировать" 
       :loading="isSubmitting"
-      class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-light transition-colors"
+      class="w-full"
     />
   </form>
 </template>

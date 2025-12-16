@@ -1,38 +1,104 @@
 /* Minimal PrimeVue styles for custom styling with Tailwind */
 
+/* Overlay Mask (затемнение фона) */
+.p-dialog-mask,
+.p-component-overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(2px);
+}
+
 /* Dialog */
 .p-dialog {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  background: white !important;
+  background-color: #ffffff !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+  border: none !important;
+  overflow: hidden;
 }
 
 .p-dialog-header {
-  padding: 1.5rem;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 1.5rem 1.75rem !important;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb) !important;
+  border-bottom: 1px solid #e5e7eb !important;
 }
 
 .p-dialog-title {
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: 700 !important;
+  font-size: 1.375rem !important;
+  color: #1f2937 !important;
 }
 
 .p-dialog-content {
-  padding: 1.5rem;
+  padding: 1.75rem !important;
+  background: white !important;
+  background-color: #ffffff !important;
 }
 
-/* Sidebar */
-.p-sidebar {
-  background: white;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+/* Close button */
+.p-dialog-header-close {
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.2s ease !important;
 }
 
-.p-sidebar-header {
-  padding: 1.5rem;
+.p-dialog-header-close:hover {
+  background-color: #f3f4f6 !important;
 }
 
-.p-sidebar-content {
-  padding: 0 1.5rem 1.5rem;
+.p-dialog-header-close:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Sidebar / Drawer (PrimeVue v4 uses `.p-drawer*` classes for Sidebar) */
+.p-sidebar,
+.p-drawer {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-left: 1px solid #e5e7eb !important;
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.p-sidebar-header,
+.p-drawer-header {
+  padding: 1.25rem 1.25rem 1rem !important;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb) !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.p-sidebar-content,
+.p-drawer-content {
+  padding: 1.25rem !important;
+  background: #ffffff !important;
+}
+
+/* Close button (best-effort for both generations of classnames) */
+.p-sidebar-header-close,
+.p-drawer-header-close,
+.p-drawer-close-button {
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.p-sidebar-header-close:hover,
+.p-drawer-header-close:hover,
+.p-drawer-close-button:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.p-sidebar-header-close:focus,
+.p-drawer-header-close:focus,
+.p-drawer-close-button:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
 }
 
 /* Toast */
@@ -72,25 +138,32 @@
 
 .p-inputtext {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  transition: all 0.2s;
+  padding: 0.875rem 1rem !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 0.75rem !important;
+  font-size: 0.9375rem !important;
+  transition: all 0.2s ease !important;
+  background-color: #ffffff !important;
+}
+
+.p-inputtext:hover {
+  border-color: #94a3b8 !important;
 }
 
 .p-inputtext:focus {
-  outline: none;
-  border-color: #B3C5FF;
-  box-shadow: 0 0 0 3px rgba(179, 197, 255, 0.1);
+  outline: none !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
 }
 
 .p-datepicker {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
+  /* PrimeVue Calendar root wrapper is also `.p-datepicker` (p-inputwrapper).
+     We keep the input visual consistent with other fields (no extra shadow). */
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 .p-datepicker table {
@@ -102,8 +175,32 @@
 }
 
 /* InputNumber */
+.p-inputnumber {
+  width: 100%;
+}
+
 .p-inputnumber-input {
   width: 100%;
+  padding: 0.875rem 1rem !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 0.75rem !important;
+  font-size: 0.9375rem !important;
+  transition: all 0.2s ease !important;
+  background-color: #ffffff !important;
+}
+
+.p-inputnumber-input:hover {
+  border-color: #94a3b8 !important;
+}
+
+.p-inputnumber-input:focus {
+  outline: none !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+.p-inputnumber-button {
+  border-radius: 0.5rem !important;
 }
 
 /* Button */
@@ -111,21 +208,40 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  transition: all 0.2s;
-  border: none;
+  padding: 0.875rem 1.5rem !important;
+  border-radius: 0.75rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
   cursor: pointer;
+  font-size: 1rem !important;
+}
+
+/* Submit button styles (applies to buttons in BookingForm) */
+.p-dialog-content .p-button {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.p-dialog-content .p-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+}
+
+.p-dialog-content .p-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
 }
 
 .p-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(179, 197, 255, 0.3);
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
 }
 
 .p-button-label {
-  font-weight: 500;
+  font-weight: 600 !important;
 }
 
 /* Component Focus States */
@@ -133,8 +249,61 @@
   outline: none;
 }
 
-/* Overlay */
-.p-component-overlay {
-  background-color: rgba(0, 0, 0, 0.4);
+/* Input Mask */
+.p-inputmask {
+  width: 100%;
+  padding: 0.875rem 1rem !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 0.75rem !important;
+  font-size: 0.9375rem !important;
+  transition: all 0.2s ease !important;
+  background-color: #ffffff !important;
+}
+
+.p-inputmask:hover {
+  border-color: #94a3b8 !important;
+}
+
+.p-inputmask:focus {
+  outline: none !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Calendar Overlay */
+.p-datepicker-panel {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+  padding: 0.5rem !important;
+}
+
+/* Ensure all overlays have proper z-index */
+.p-dialog-mask {
+  z-index: 1100 !important;
+}
+
+.p-sidebar-mask,
+.p-drawer-mask {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  z-index: 1000;
+}
+
+/* Global: disable focus outline/highlight for all buttons across the project */
+button:focus,
+button:focus-visible,
+.p-button:focus,
+.p-button:focus-visible,
+.p-dialog-header-close:focus,
+.p-dialog-header-close:focus-visible,
+.p-sidebar-header-close:focus,
+.p-sidebar-header-close:focus-visible,
+.p-drawer-header-close:focus,
+.p-drawer-header-close:focus-visible,
+.p-drawer-close-button:focus,
+.p-drawer-close-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 

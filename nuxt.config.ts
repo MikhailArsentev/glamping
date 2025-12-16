@@ -24,6 +24,26 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
+  // Hot Module Replacement (HMR) настройки
+  vite: {
+    server: {
+      hmr: {
+        protocol: 'ws',
+        host: 'localhost',
+        port: 24678,
+        clientPort: 24678
+      },
+      watch: {
+        usePolling: false,
+        interval: 100
+      }
+    },
+    // Оптимизация для быстрой пересборки
+    optimizeDeps: {
+      include: ['vue', 'vue-router', '@vueuse/core', '@vueuse/motion']
+    }
+  },
+
   app: {
     head: {
       title: 'Глэмпинг Тропос - Место тишины, семьи и молитвы',
