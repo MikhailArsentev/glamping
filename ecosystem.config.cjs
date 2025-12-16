@@ -2,14 +2,14 @@ module.exports = {
   apps: [
     {
       name: 'glamping',
-      port: 3000,
+      port: 3001,
       exec_mode: 'cluster',
       instances: 'max',
       script: './.output/server/index.mjs',
       env_production: {
         NODE_ENV: 'production',
-        PORT: 3000,
-        HOST: '0.0.0.0'
+        PORT: 3001,
+        HOST: '0.0.0.0',
       },
       error_file: './logs/err.log',
       out_file: './logs/out.log',
@@ -19,8 +19,7 @@ module.exports = {
       autorestart: true,
       watch: false,
       merge_logs: true,
-      kill_timeout: 5000
-    }
-  ]
+      kill_timeout: 5000,
+    },
+  ],
 }
-

@@ -85,7 +85,7 @@ jobs:
           password: ${{ secrets.SERVER_USER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
-            cd ${{ secrets.APP_PATH || '/var/www/glamping' }}
+            cd ${{ secrets.APP_PATH || '/home/glamping/www' }}
             pm2 list
             pm2 logs glamping --lines 20 --nostream
 
