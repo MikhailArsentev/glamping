@@ -34,7 +34,7 @@
         <div class="hidden lg:flex items-center space-x-4">
           <Button 
             label="Забронировать" 
-            class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition-colors"
+            class="btn-primary px-6 py-2 rounded-full"
             @click="openBookingDialog"
           />
         </div>
@@ -73,7 +73,7 @@
         
         <Button 
           label="Забронировать" 
-          class="bg-primary text-white w-full mt-4 rounded-full"
+          class="btn-primary w-full mt-4 rounded-full"
           @click="() => { isMobileMenuOpen = false; openBookingDialog(); }"
         />
       </nav>

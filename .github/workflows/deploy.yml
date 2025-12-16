@@ -28,6 +28,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          NUXT_PUBLIC_BUILD_ID: ${{ github.sha }}
 
       - name: Create deployment archive
         run: |

@@ -60,7 +60,7 @@
             <p class="text-gray-600 mb-6">Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой.</p>
             <Button 
               label="Отправить" 
-              class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-light transition-colors"
+              class="w-full btn-primary py-3 rounded-lg"
               @click="openBookingDialog"
             />
           </div>

@@ -108,7 +108,7 @@
         <div class="text-center mt-12">
           <Button 
             label="Подробнее" 
-            class="bg-primary text-white px-8 py-3 rounded-full hover:bg-primary-light transition-colors"
+            class="btn-primary px-8 py-3 rounded-full"
           />
         </div>
       </div>

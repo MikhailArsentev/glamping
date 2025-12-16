@@ -52,7 +52,7 @@
       <div class="flex gap-3">
         <Button 
           label="Забронировать" 
-          class="flex-1 bg-primary text-white py-2 rounded-lg hover:bg-primary-light transition-colors"
+          class="flex-1 btn-primary py-2 rounded-lg"
           @click="$emit('book')"
         />
         <Button 

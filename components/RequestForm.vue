@@ -25,7 +25,7 @@
         type="submit" 
         label="Отправить" 
         :loading="isSubmitting"
-        class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-light transition-colors"
+        class="w-full btn-primary"
       />
     </form>
   </div>

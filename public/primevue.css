@@ -336,6 +336,99 @@
   font-weight: 600 !important;
 }
 
+/* Ripple (PrimeVue) */
+.p-ink {
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 9999px;
+  transform: scale(0);
+  pointer-events: none;
+  opacity: 1;
+}
+
+.p-ink-active {
+  animation: p-ripple 0.45s linear;
+}
+
+@keyframes p-ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+/* Universal Primary CTA (works for PrimeVue Buttons and regular <a>/<button>) */
+.btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease !important;
+  will-change: transform;
+}
+
+.btn-primary:hover {
+  filter: brightness(0.98);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+.btn-primary[disabled],
+.btn-primary:disabled,
+.btn-primary[aria-disabled="true"],
+.btn-primary.p-disabled {
+  opacity: 0.85;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-primary .p-button-loading-icon,
+.btn-primary .p-button-icon,
+.btn-primary svg {
+  color: currentColor !important;
+}
+
+/* Primary CTA button (Tailwind-friendly) */
+.p-button.btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.p-button.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+}
+
+.p-button.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+.p-button.btn-primary:disabled,
+.p-button.btn-primary.p-disabled {
+  opacity: 0.85;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.p-button.btn-primary .p-button-loading-icon,
+.p-button.btn-primary .p-button-icon,
+.p-button.btn-primary svg {
+  color: currentColor !important;
+}
+
+.p-button.btn-primary.p-button-loading .p-button-label {
+  opacity: 1 !important;
+}
+
 /* Component Focus States */
 .p-component:focus {
   outline: none;

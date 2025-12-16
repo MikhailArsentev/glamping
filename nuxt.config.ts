@@ -1,4 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// Cache-busting for public assets that are served with long immutable cache headers in Nginx
+const env = ((globalThis as any).process?.env ?? {}) as Record<string, string | undefined>
+const buildId = env.NUXT_PUBLIC_BUILD_ID ?? env.GITHUB_SHA ?? 'dev'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
@@ -54,7 +58,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'stylesheet', href: '/primevue.css' }
+        { rel: 'stylesheet', href: `/primevue.css?v=${buildId}` }
       ]
     }
   },

@@ -32,7 +32,7 @@
           >
             <Button 
               label="Посмотреть всё дома" 
-              class="bg-primary text-white px-8 py-3 rounded-full text-lg hover:bg-primary-light transition-colors"
+              class="btn-primary px-8 py-3 rounded-full text-lg"
               @click="$router.push('/accommodation')"
             />
             <Button 
@@ -107,7 +107,7 @@
         <div class="text-center">
           <Button 
             label="Подробнее" 
-            class="bg-primary text-white px-8 py-3 rounded-full hover:bg-primary-light transition-colors"
+            class="btn-primary px-8 py-3 rounded-full"
             @click="$router.push('/about')"
           />
         </div>
@@ -165,7 +165,7 @@
         <div class="text-center">
           <Button 
             label="Забронировать" 
-            class="bg-primary text-white px-8 py-3 rounded-full hover:bg-primary-light transition-colors"
+            class="btn-primary px-8 py-3 rounded-full"
             @click="openBooking"
           />
         </div>
