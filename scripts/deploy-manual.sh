@@ -36,7 +36,7 @@ tar -czf deploy.tar.gz \
     package.json \
     package-lock.json \
     nuxt.config.ts \
-    ecosystem.config.js
+    ecosystem.config.cjs
 
 echo -e "${YELLOW}Шаг 3: Загрузка на сервер${NC}"
 scp deploy.tar.gz ${SERVER_USER}@${SERVER_HOST}:/tmp/
@@ -58,7 +58,7 @@ rm /tmp/deploy.tar.gz
 npm ci --omit=dev
 
 # Перезапуск
-pm2 reload ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production
+pm2 reload ecosystem.config.cjs --env production || pm2 start ecosystem.config.cjs --env production
 
 # Очистка старых бэкапов
 ls -dt .output.backup.* 2>/dev/null | tail -n +4 | xargs rm -rf 2>/dev/null || true

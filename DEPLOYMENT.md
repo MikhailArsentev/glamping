@@ -39,6 +39,7 @@ chmod +x setup-server.sh
 ```
 
 Скрипт автоматически установит:
+
 - Node.js v20
 - PM2
 - Nginx
@@ -165,15 +166,16 @@ chmod 600 ~/.ssh/authorized_keys
 
 Добавьте следующие secrets:
 
-| Название | Описание | Пример |
-|----------|----------|--------|
-| `SSH_PRIVATE_KEY` | Приватный SSH ключ | Содержимое `~/.ssh/github_deploy` |
-| `SERVER_HOST` | IP адрес или домен сервера | `123.45.67.89` или `server.example.com` |
-| `SERVER_USER` | Имя пользователя на сервере | `ubuntu` или `deployer` |
-| `SERVER_PORT` | SSH порт (опционально) | `22` |
-| `APP_PATH` | Путь к приложению на сервере | `/var/www/glamping` |
+| Название          | Описание                     | Пример                                  |
+| ----------------- | ---------------------------- | --------------------------------------- |
+| `SSH_PRIVATE_KEY` | Приватный SSH ключ           | Содержимое `~/.ssh/github_deploy`       |
+| `SERVER_HOST`     | IP адрес или домен сервера   | `123.45.67.89` или `server.example.com` |
+| `SERVER_USER`     | Имя пользователя на сервере  | `ubuntu` или `deployer`                 |
+| `SERVER_PORT`     | SSH порт (опционально)       | `22`                                    |
+| `APP_PATH`        | Путь к приложению на сервере | `/var/www/glamping`                     |
 
 **Для staging окружения** (опционально):
+
 - `STAGING_SERVER_HOST`
 - `STAGING_SERVER_USER`
 - `STAGING_SERVER_PORT`
@@ -186,6 +188,7 @@ chmod 600 ~/.ssh/authorized_keys
 ### Production деплой
 
 Автоматический деплой запускается при:
+
 - Push в ветку `main` или `master`
 - Ручном запуске через GitHub Actions
 
@@ -307,11 +310,11 @@ pm2 restart glamping
 pm2 logs glamping --err
 
 # Проверить конфигурацию
-cat ecosystem.config.js
+cat ecosystem.config.cjs
 
 # Перезапустить с нуля
 pm2 delete glamping
-pm2 start ecosystem.config.js --env production
+pm2 start ecosystem.config.cjs --env production
 ```
 
 ### Проблема: Nginx возвращает 502 Bad Gateway
@@ -386,13 +389,14 @@ pm2 flush
 ## Контакты и поддержка
 
 При возникновении проблем:
+
 - Проверьте логи: `pm2 logs glamping`
 - Проверьте статус: `pm2 list`
 - Проверьте Nginx: `sudo nginx -t`
 - Свяжитесь с администратором сервера
 
 **Полезные ссылки:**
+
 - [Документация Nuxt](https://nuxt.com/docs)
 - [Документация PM2](https://pm2.keymetrics.io/)
 - [Документация Nginx](https://nginx.org/ru/docs/)
-

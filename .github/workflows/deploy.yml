@@ -36,7 +36,7 @@ jobs:
             package.json \
             package-lock.json \
             nuxt.config.ts \
-            ecosystem.config.js
+            ecosystem.config.cjs
 
       - name: Deploy to server via SSH
         uses: appleboy/scp-action@v0.1.7
@@ -72,7 +72,7 @@ jobs:
             npm ci --omit=dev
 
             # Перезапустить приложение через PM2
-            pm2 reload ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production
+            pm2 reload ecosystem.config.cjs --env production || pm2 start ecosystem.config.cjs --env production
 
             # Очистить старые бэкапы (оставить последние 3)
             ls -dt .output.backup.* 2>/dev/null | tail -n +4 | xargs rm -rf 2>/dev/null || true
