@@ -68,11 +68,33 @@ jobs:
             tar -xzf /tmp/deploy.tar.gz
             rm /tmp/deploy.tar.gz
 
+            # Создать директорию для логов если не существует
+            mkdir -p logs
+
             # Установить зависимости продакшена (если нужно)
             npm ci --omit=dev
 
-            # Перезапустить приложение через PM2
-            pm2 reload ecosystem.config.cjs --env production || pm2 start ecosystem.config.cjs --env production
+            # Остановить приложение если запущено
+            pm2 delete glamping 2>/dev/null || true
+
+            # Запустить приложение через PM2
+            pm2 start ecosystem.config.cjs --env production
+
+            # Сохранить список PM2 процессов
+            pm2 save
+
+            # Показать статус
+            pm2 list
+
+            # Проверить что приложение запустилось
+            sleep 3
+            if pm2 list | grep -q "glamping.*online"; then
+              echo "✅ Приложение успешно запущено"
+            else
+              echo "❌ Ошибка запуска приложения"
+              pm2 logs glamping --lines 50 --nostream
+              exit 1
+            fi
 
             # Очистить старые бэкапы (оставить последние 3)
             ls -dt .output.backup.* 2>/dev/null | tail -n +4 | xargs rm -rf 2>/dev/null || true

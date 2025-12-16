@@ -52,7 +52,7 @@ server {
     server_name your-domain.com www.your-domain.com;
 
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:3001;
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -65,7 +65,7 @@ server {
 
     # Статические файлы
     location /_nuxt/ {
-        proxy_pass http://localhost:3000/_nuxt/;
+        proxy_pass http://localhost:3001/_nuxt/;
         proxy_cache_valid 200 60m;
         proxy_cache_bypass \$http_pragma \$http_authorization;
         add_header Cache-Control "public, immutable";
