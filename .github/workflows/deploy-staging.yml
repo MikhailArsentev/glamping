@@ -1,0 +1,78 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - develop
+      - staging
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: staging
+
+      - name: Create deployment archive
+        run: |
+          tar -czf deploy.tar.gz \
+            .output \
+            package.json \
+            package-lock.json \
+            nuxt.config.ts \
+            ecosystem.config.js
+
+      - name: Deploy to staging server via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.STAGING_SERVER_HOST }}
+          username: ${{ secrets.STAGING_SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.STAGING_SERVER_PORT || 22 }}
+          source: "deploy.tar.gz"
+          target: "/tmp/"
+
+      - name: Extract and restart application
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.STAGING_SERVER_HOST }}
+          username: ${{ secrets.STAGING_SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.STAGING_SERVER_PORT || 22 }}
+          script: |
+            cd ${{ secrets.STAGING_APP_PATH || '/var/www/glamping-staging' }}
+            
+            if [ -d ".output" ]; then
+              mv .output .output.backup.$(date +%Y%m%d_%H%M%S)
+            fi
+            
+            tar -xzf /tmp/deploy.tar.gz
+            rm /tmp/deploy.tar.gz
+            
+            npm ci --omit=dev
+            
+            pm2 reload glamping-staging || pm2 start ecosystem.config.js --name glamping-staging --env production
+            
+            ls -dt .output.backup.* 2>/dev/null | tail -n +3 | xargs rm -rf 2>/dev/null || true
+
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "✅ Staging deployment successful!"
+

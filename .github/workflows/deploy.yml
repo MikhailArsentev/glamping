@@ -1,0 +1,102 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Create deployment archive
+        run: |
+          tar -czf deploy.tar.gz \
+            .output \
+            package.json \
+            package-lock.json \
+            nuxt.config.ts \
+            ecosystem.config.js
+
+      - name: Deploy to server via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_USER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          source: 'deploy.tar.gz'
+          target: '/tmp/'
+
+      - name: Extract and restart application
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_USER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            # Перейти в директорию приложения
+            cd ${{ secrets.APP_PATH || '/home/glamping/www' }}
+
+            # Создать бэкап текущей версии
+            if [ -d ".output" ]; then
+              mv .output .output.backup.$(date +%Y%m%d_%H%M%S)
+            fi
+
+            # Распаковать новую версию
+            tar -xzf /tmp/deploy.tar.gz
+            rm /tmp/deploy.tar.gz
+
+            # Установить зависимости продакшена (если нужно)
+            npm ci --omit=dev
+
+            # Перезапустить приложение через PM2
+            pm2 reload ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production
+
+            # Очистить старые бэкапы (оставить последние 3)
+            ls -dt .output.backup.* 2>/dev/null | tail -n +4 | xargs rm -rf 2>/dev/null || true
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_USER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            cd ${{ secrets.APP_PATH || '/var/www/glamping' }}
+            pm2 list
+            pm2 logs glamping --lines 20 --nostream
+
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "✅ Deployment successful!"
+          echo "Application deployed to production server"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Check the logs for details"
