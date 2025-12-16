@@ -9,6 +9,13 @@ export default defineNuxtConfig({
     '@nuxt/image'
   ],
 
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config.js',
+    exposeConfig: false,
+    viewer: false
+  },
+
   // Явно включаем роутинг на основе файлов
   pages: true,
   

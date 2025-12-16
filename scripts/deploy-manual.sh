@@ -33,6 +33,7 @@ npm run build
 echo -e "${YELLOW}Шаг 2: Создание архива${NC}"
 tar -czf deploy.tar.gz \
     .output \
+    public \
     package.json \
     package-lock.json \
     nuxt.config.ts \
