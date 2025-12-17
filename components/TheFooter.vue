@@ -1,61 +1,88 @@
 <template>
-  <footer class="bg-white border-t border-gray-200 mt-20">
-    <div class="container mx-auto px-4 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-        <!-- Contact Info -->
-        <div>
-          <div class="flex items-center space-x-2 mb-6">
-            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-              <span class="text-white font-bold text-lg">Т</span>
-            </div>
-            <span class="text-xl font-bold text-primary">ТРОПОС</span>
-          </div>
-          
-          <div class="space-y-3 text-gray-600">
-            <div class="flex items-start space-x-3">
-              <i class="pi pi-map-marker text-accent mt-1"></i>
-              <p class="text-sm">Vana-kaarma 1, k. 3</p>
-            </div>
-            <div class="flex items-center space-x-3">
-              <i class="pi pi-phone text-accent"></i>
-              <a href="tel:+77777777777" class="text-sm hover:text-accent transition-colors">+7 777 777 77 77</a>
-            </div>
-            <div class="flex items-center space-x-3">
-              <i class="pi pi-envelope text-accent"></i>
-              <a href="mailto:email@mail.ru" class="text-sm hover:text-accent transition-colors">email@mail.ru</a>
-            </div>
-          </div>
-        </div>
+  <footer class="bg-white mt-20">
+    <div class="site-container pb-12">
+      <div class="rounded-[44px] bg-brand-50 p-6 sm:p-10 lg:p-14">
+        <div class="grid gap-8 lg:grid-cols-[420px_1fr] lg:items-stretch">
+          <div class="rounded-[32px] bg-white p-6 sm:p-8">
+            <h3 class="text-3xl font-bold text-black">Контакты</h3>
 
-        <!-- Map -->
-        <div class="h-64 bg-background rounded-lg overflow-hidden">
-          <div class="w-full h-full flex items-center justify-center text-gray-400">
-            <div class="text-center">
-              <i class="pi pi-map text-4xl mb-2"></i>
-              <p class="text-sm">Карта загружается...</p>
+            <ul class="mt-6 space-y-4 text-black/80">
+              <li class="flex items-center gap-4">
+                <span
+                  class="inline-flex size-10 rounded-full bg-brand-50"
+                  aria-hidden="true"
+                />
+                <span class="text-sm">Уличная улица, д. 1, к. 3</span>
+              </li>
+              <li class="flex items-center gap-4">
+                <span
+                  class="inline-flex size-10 rounded-full bg-brand-50"
+                  aria-hidden="true"
+                />
+                <a
+                  class="text-sm hover:underline"
+                  href="tel:+77777777777"
+                >
+                  +7 777 777 77 77
+                </a>
+              </li>
+              <li class="flex items-center gap-4">
+                <span
+                  class="inline-flex size-10 rounded-full bg-brand-50"
+                  aria-hidden="true"
+                />
+                <a
+                  class="text-sm hover:underline"
+                  href="mailto:email@email.ru"
+                >
+                  email@email.ru
+                </a>
+              </li>
+            </ul>
+
+            <div class="mt-10 text-sm text-black/60">Яндекс.Карты</div>
+          </div>
+
+          <div
+            class="rounded-[32px] bg-brand-50 flex items-center justify-center"
+          >
+            <div class="text-brand-200">
+              <i
+                class="pi pi-map-marker text-5xl"
+                aria-hidden="true"
+              />
             </div>
           </div>
-        </div>
-
-        <!-- Yandex Widget -->
-        <div class="bg-background rounded-lg p-6">
-          <h3 class="font-bold text-lg mb-4 text-primary">Я здесь • Яндекс</h3>
-          <p class="text-sm text-gray-600">
-            Виджет Яндекс для отметки местоположения
-          </p>
         </div>
       </div>
 
-      <!-- Bottom Bar -->
-      <div class="border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <p class="text-sm text-gray-500">© 2025. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</p>
-        
-        <div class="flex items-center space-x-6 text-sm">
-          <NuxtLink to="/privacy" class="text-gray-500 hover:text-accent transition-colors">
-            ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ
+      <div
+        class="mt-10 grid grid-cols-1 gap-4 text-sm text-black/60 md:grid-cols-3 md:items-center"
+      >
+        <div class="flex items-center justify-center md:justify-start gap-3">
+          <div
+            class="size-8 rounded-full bg-brand-100 flex items-center justify-center"
+          >
+            <span class="text-brand-200 text-xs">logo</span>
+          </div>
+          <span>© 2025. Все права защищены</span>
+        </div>
+
+        <div class="flex justify-center">
+          <NuxtLink
+            to="/privacy"
+            class="hover:text-black transition-colors"
+          >
+            Политика конфиденциальности
           </NuxtLink>
-          <NuxtLink to="/contacts" class="text-gray-500 hover:text-accent transition-colors">
-            УСЛОВИЯ ОБСЛУЖИВАНИЯ
+        </div>
+
+        <div class="flex justify-center md:justify-end">
+          <NuxtLink
+            to="/contacts"
+            class="hover:text-black transition-colors"
+          >
+            Условия и положения
           </NuxtLink>
         </div>
       </div>
@@ -63,6 +90,4 @@
   </footer>
 </template>
 
-<script setup lang="ts">
-</script>
-
+<script setup lang="ts"></script>

@@ -1,48 +1,75 @@
 <template>
-  <div class="min-h-screen pt-20">
-    <!-- Hero Section with Stats -->
-    <section class="bg-accent-light py-20">
-      <div class="container mx-auto px-4 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center mb-12">
-          <h1 
-            class="text-4xl md:text-5xl font-bold text-primary mb-6"
-            v-motion
-            :initial="{ opacity: 0, y: 30 }"
-            :visible="{ opacity: 1, y: 0 }"
-          >
-            ЗАГОЛОВОК<br />О ГЛЭМПИНГЕ
-          </h1>
-          <p class="text-lg text-gray-700">
-            Подзаголовок про проживание в глэмпинге или какая-то слоган
-          </p>
-        </div>
+  <div class="min-h-screen">
+    <!-- Hero -->
+    <section class="pt-24 pb-12">
+      <div class="site-container">
+        <div
+          class="rounded-[44px] bg-brand-50 px-6 py-10 sm:px-10 sm:py-12 lg:px-16 lg:py-14"
+        >
+          <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+            <div>
+              <h1
+                class="text-[44px] leading-[0.92] sm:text-[56px] sm:leading-[0.92] lg:text-[72px] lg:leading-[0.92] font-black tracking-tight uppercase text-black"
+                v-motion
+                :initial="{ opacity: 0, y: 30 }"
+                :visible="{ opacity: 1, y: 0 }"
+              >
+                ЗАГОЛОВОК
+                <br />
+                О ГЛЭМПИНГЕ
+              </h1>
+              <p class="mt-6 text-lg sm:text-xl text-black/70 max-w-xl">
+                Подзаголовок про преимущества глэмпинга или какой-то слоган
+              </p>
+            </div>
 
-        <!-- Stats Counter -->
-        <div v-motion :initial="{ opacity: 0, y: 30 }" :visible="{ opacity: 1, y: 0 }" :delay="200">
-          <StatsCounter :stats="stats" />
+            <div
+              class="grid grid-cols-2 gap-x-16 gap-y-12 justify-items-end text-right"
+              v-motion
+              :initial="{ opacity: 0, y: 20 }"
+              :visible="{ opacity: 1, y: 0 }"
+              :delay="200"
+            >
+              <div
+                v-for="stat in stats"
+                :key="stat.label"
+              >
+                <div class="text-5xl font-semibold text-black">
+                  {{ stat.value }}
+                </div>
+                <div class="mt-3 text-base text-black/70">{{ stat.label }}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Timeline Section -->
     <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 text-center">История создания глэмпинга</h2>
-        <div class="max-w-3xl mx-auto text-center mb-16">
-          <p class="text-gray-600 leading-relaxed">
-            Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой.
+      <div class="site-container">
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+          <h2 class="text-3xl md:text-4xl font-bold text-black">
+            История создания глэмпинга
+          </h2>
+          <p class="text-black/70 leading-relaxed lg:pt-2">
+            Глэмпинг у монастыря — отдых в гармонии с душой. Глэмпинг у
+            монастыря — отдых в гармонии с душой. Глэмпинг у монастыря — отдых в
+            гармонии с душой.
           </p>
         </div>
 
         <!-- Timeline -->
-        <div class="max-w-4xl mx-auto">
+        <div class="mt-14 max-w-5xl mx-auto">
           <div class="relative">
             <!-- Timeline Line -->
-            <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-accent"></div>
+            <div
+              class="absolute left-1/2 -translate-x-1/2 w-px h-full bg-secondary"
+            ></div>
 
             <!-- Timeline Items -->
-            <div 
-              v-for="(item, index) in timeline" 
+            <div
+              v-for="(item, index) in timeline"
               :key="index"
               class="relative mb-12"
               v-motion
@@ -50,23 +77,38 @@
               :visible="{ opacity: 1, x: 0 }"
               :delay="index * 150"
             >
-              <div :class="[
-                'flex items-center gap-8',
-                index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-              ]">
-                <div :class="[
-                  'flex-1',
-                  index % 2 === 0 ? 'text-right' : 'text-left'
-                ]">
-                  <div class="bg-accent-light rounded-2xl p-6 inline-block">
-                    <h3 class="text-2xl font-bold text-primary mb-2">{{ item.year }}</h3>
-                    <p class="text-gray-600">{{ item.description }}</p>
+              <div
+                :class="[
+                  'flex items-center gap-8',
+                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse',
+                ]"
+              >
+                <div
+                  :class="[
+                    'flex-1',
+                    index % 2 === 0 ? 'text-right' : 'text-left',
+                  ]"
+                >
+                  <div
+                    :class="[
+                      'timeline-card bg-brand-50 rounded-[28px] p-7 inline-block max-w-md',
+                      index % 2 === 0
+                        ? 'timeline-card--left'
+                        : 'timeline-card--right',
+                    ]"
+                  >
+                    <h3 class="text-2xl font-bold text-black mb-2">
+                      {{ item.year }}
+                    </h3>
+                    <p class="text-black/70">{{ item.description }}</p>
                   </div>
                 </div>
-                
+
                 <!-- Timeline Dot -->
-                <div class="w-4 h-4 bg-accent rounded-full border-4 border-white z-10"></div>
-                
+                <div
+                  class="w-3 h-3 bg-brand-50 rounded-full ring-8 ring-white z-10 bg-secondary"
+                ></div>
+
                 <div class="flex-1"></div>
               </div>
             </div>
@@ -76,95 +118,85 @@
     </section>
 
     <!-- Mission Section -->
-    <section class="py-20 bg-background">
-      <div class="container mx-auto px-4 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 text-center">Миссия глэмпинга</h2>
-        <div class="max-w-3xl mx-auto text-center mb-16">
-          <p class="text-gray-600 leading-relaxed">
-            Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой.
+    <section class="py-20 bg-white">
+      <div class="site-container">
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+          <h2 class="text-3xl md:text-4xl font-bold text-black">
+            Миссия глэмпинга
+          </h2>
+          <p class="text-black/70 leading-relaxed lg:pt-2">
+            Глэмпинг у монастыря — отдых в гармонии с душой. Глэмпинг у
+            монастыря — отдых в гармонии с душой.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div 
-            v-for="(mission, index) in missions" 
-            :key="index"
-            class="bg-white rounded-2xl p-8"
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article
+            v-for="(mission, index) in missions"
+            :key="mission.title"
+            class="rounded-[32px] bg-brand-50 p-8"
             v-motion
-            :initial="{ opacity: 0, y: 50 }"
+            :initial="{ opacity: 0, y: 30 }"
             :visible="{ opacity: 1, y: 0 }"
             :delay="index * 100"
           >
-            <div class="mb-6">
-              <div class="w-full h-48 bg-background rounded-xl flex items-center justify-center">
-                <i class="pi pi-image text-6xl text-gray-300"></i>
-              </div>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3">{{ mission.title }}</h3>
-            <p class="text-gray-600">{{ mission.description }}</p>
-          </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <Button 
-            label="Подробнее" 
-            class="btn-primary px-8 py-3 rounded-full"
-          />
+            <h3 class="text-xl font-semibold text-black">
+              {{ mission.title }}
+            </h3>
+            <p class="mt-3 text-black/70">{{ mission.description }}</p>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- Photo Gallery Section -->
     <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-12 text-center">
-          Фото домиков, интерьеры, инфраструктура
-        </h2>
-        
-        <div class="max-w-3xl mx-auto text-center mb-12">
-          <p class="text-gray-600 leading-relaxed">
-            Здесь будут фото домиков — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём — отдых в гармонии с душой.
+      <div class="site-container">
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+          <h2 class="text-3xl md:text-4xl font-bold text-black">
+            Фото домиков, интерьеры, инфраструктура
+          </h2>
+          <p class="text-black/70 leading-relaxed lg:pt-2">
+            Глэмпинг у монастыря — отдых в гармонии с душой. Глэмпинг у
+            монастыря — отдых в гармонии с душой.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <div 
-            v-for="n in 9" 
-            :key="n"
-            :class="[
-              'bg-background rounded-2xl overflow-hidden',
-              n === 4 ? 'md:col-span-2 h-96' : 'h-64'
-            ]"
-            v-motion
-            :initial="{ opacity: 0, scale: 0.9 }"
-            :visible="{ opacity: 1, scale: 1 }"
-            :delay="n * 50"
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="h-80 md:h-[250px] rounded-[32px] bg-brand-50 flex items-center justify-center"
           >
-            <div class="w-full h-full flex items-center justify-center">
-              <i class="pi pi-image text-6xl text-gray-300"></i>
-            </div>
+            <PhotoPlaceholderIcon class="w-14 h-14 opacity-60" />
           </div>
-        </div>
-
-        <div class="text-center">
-          <Button 
-            label="Посмотреть все" 
-            outlined
-            class="border-2 border-primary text-primary px-8 py-3 rounded-full hover:bg-primary/5 transition-colors"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="py-20 bg-background">
-      <div class="container mx-auto px-4 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <div class="h-96 bg-white rounded-2xl overflow-hidden shadow-lg flex items-center justify-center">
-            <div class="text-center text-gray-400">
-              <i class="pi pi-map text-6xl mb-4"></i>
-              <p class="text-lg">Карта местоположения</p>
-            </div>
+          <div
+            class="h-80 md:h-[250px] rounded-[32px] bg-brand-50 flex items-center justify-center"
+          >
+            <PhotoPlaceholderIcon class="w-14 h-14 opacity-60" />
+          </div>
+          <div
+            class="md:row-span-2 h-80 md:h-[520px] rounded-[32px] bg-brand-50 flex items-center justify-center"
+          >
+            <PhotoPlaceholderIcon class="w-14 h-14 opacity-60" />
+          </div>
+          <div
+            class="md:col-span-2 h-80 md:h-[250px] rounded-[32px] bg-brand-50 flex items-center justify-center"
+          >
+            <PhotoPlaceholderIcon class="w-14 h-14 opacity-60" />
+          </div>
+          <div
+            class="h-80 md:h-[250px] rounded-[32px] bg-brand-50 flex items-center justify-center"
+          >
+            <PhotoPlaceholderIcon class="w-14 h-14 opacity-60" />
+          </div>
+          <div
+            class="h-80 md:h-[250px] rounded-[32px] bg-brand-50 flex items-center justify-center"
+          >
+            <PhotoPlaceholderIcon class="w-14 h-14 opacity-60" />
+          </div>
+          <div
+            class="h-80 md:h-[250px] rounded-[32px] bg-brand-50 flex items-center justify-center"
+          >
+            <PhotoPlaceholderIcon class="w-14 h-14 opacity-60" />
           </div>
         </div>
       </div>
@@ -172,16 +204,31 @@
 
     <!-- Booking Section -->
     <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div class="bg-background rounded-2xl p-8">
-            <h3 class="text-2xl font-bold text-primary mb-6">Забронировать домик</h3>
-            <p class="text-gray-600 mb-6">Глэмпинг с монастырём — отдых в гармонии с душой. Глэмпинг с монастырём.</p>
-            <BookingForm @success="handleBookingSuccess" />
+      <div class="site-container">
+        <div
+          class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start max-w-5xl mx-auto"
+        >
+          <div
+            v-motion
+            :initial="{ opacity: 0, x: -30 }"
+            :visible="{ opacity: 1, x: 0 }"
+          >
+            <h1 class="text-3xl md:text-4xl font-bold text-black">
+              Забронировать домик
+            </h1>
+            <p class="mt-4 text-black/70 leading-relaxed">
+              Оставьте заявку — мы свяжемся с вами и поможем подобрать
+              подходящий вариант.
+            </p>
+            <p class="mt-6 text-sm text-black/60">Vana-kaarma 1, k. 3</p>
           </div>
 
-          <div>
-            <RequestForm />
+          <div
+            v-motion
+            :initial="{ opacity: 0, x: 30 }"
+            :visible="{ opacity: 1, x: 0 }"
+          >
+            <RequestForm variant="soft" />
           </div>
         </div>
       </div>
@@ -190,48 +237,65 @@
 </template>
 
 <script setup lang="ts">
-import { useToast } from 'primevue/usetoast'
-import Button from 'primevue/button'
+  const stats = [
+    { value: 10, label: 'домиков' },
+    { value: 10, label: 'гектаров' },
+    { value: 10, label: 'мероприятий' },
+    { value: 10, label: 'событий' },
+  ]
 
-const toast = useToast()
+  const timeline = [
+    { year: '2020 г', description: 'Основана история хозяйства/глэмпинга' },
+    { year: '2020 г', description: 'Описание истории создания/глэмпинга' },
+    { year: '2020 г', description: 'Описание истории создания/глэмпинга' },
+    { year: '2020 г', description: 'Описание истории создания/глэмпинга' },
+    { year: '2020 г', description: 'Описание истории создания/глэмпинга' },
+  ]
 
-const stats = [
-  { value: 10, label: 'домиков' },
-  { value: 10, label: 'гектаров' },
-  { value: 10, label: 'мероприятий' },
-  { value: 10, label: 'событий' }
-]
-
-const timeline = [
-  { year: '2020 г', description: 'Основана история хозяйства/глэмпинга' },
-  { year: '2020 г', description: 'Описание истории создания/глэмпинга' },
-  { year: '2020 г', description: 'Описание истории создания/глэмпинга' },
-  { year: '2020 г', description: 'Описание истории создания/глэмпинга' },
-  { year: '2020 г', description: 'Описание истории создания/глэмпинга' }
-]
-
-const missions = [
-  {
-    title: 'Миссия 1',
-    description: 'Подробнее об основных целях, миссии, что...'
-  },
-  {
-    title: 'Миссия 2',
-    description: 'Подробнее об основных целях, миссии, что...'
-  },
-  {
-    title: 'Миссия 3',
-    description: 'Подробнее об основных целях, миссии, что...'
-  }
-]
-
-const handleBookingSuccess = () => {
-  toast.add({ 
-    severity: 'success', 
-    summary: 'Успешно', 
-    detail: 'Бронирование отправлено!', 
-    life: 3000 
-  })
-}
+  const missions = [
+    {
+      title: 'Миссия 1',
+      description: 'Подробнее об основных целях, миссии, что...',
+    },
+    {
+      title: 'Миссия 2',
+      description: 'Подробнее об основных целях, миссии, что...',
+    },
+    {
+      title: 'Миссия 3',
+      description: 'Подробнее об основных целях, миссии, что...',
+    },
+  ]
 </script>
 
+<style scoped>
+  .timeline-card {
+    position: relative;
+  }
+
+  .timeline-card--left::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #f0f3ff; /* brand.50 */
+  }
+
+  .timeline-card--right::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #f0f3ff; /* brand.50 */
+  }
+</style>

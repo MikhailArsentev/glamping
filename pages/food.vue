@@ -2,7 +2,7 @@
   <div class="min-h-screen pt-20">
     <!-- Hero Section -->
     <section class="bg-accent-light py-20">
-      <div class="container mx-auto px-4 lg:px-8">
+      <div class="site-container">
         <div class="max-w-4xl mx-auto text-center">
           <h1 
             class="text-4xl md:text-5xl font-bold text-primary mb-6"
@@ -21,7 +21,7 @@
 
     <!-- Content Section -->
     <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 lg:px-8">
+      <div class="site-container">
         <div class="max-w-4xl mx-auto">
           <div class="prose prose-lg max-w-none mb-12">
             <p class="text-gray-600 leading-relaxed">
@@ -40,7 +40,7 @@
               :delay="n * 100"
             >
               <div class="w-full h-full flex items-center justify-center">
-                <i class="pi pi-image text-6xl text-gray-300"></i>
+                <PhotoPlaceholderIcon class="w-12 h-12 opacity-80" />
               </div>
             </div>
           </div>

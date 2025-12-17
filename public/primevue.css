@@ -1,5 +1,14 @@
 /* Minimal PrimeVue styles for custom styling with Tailwind */
 
+/* Typography: ensure PrimeVue components inherit Manrope from the app */
+:root {
+  --font-family: 'Manrope', system-ui, sans-serif;
+}
+
+.p-component {
+  font-family: var(--font-family) !important;
+}
+
 /* Overlay Mask (затемнение фона) */
 .p-dialog-mask,
 .p-component-overlay {
@@ -311,25 +320,23 @@
 
 /* Submit button styles (applies to buttons in BookingForm) */
 .p-dialog-content .p-button {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  background: #000000 !important;
   color: white !important;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+  box-shadow: none !important;
 }
 
 .p-dialog-content .p-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+  background: #111111 !important;
+  transform: translateY(-1px);
 }
 
 .p-dialog-content .p-button:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
 }
 
 .p-button:focus {
   outline: none !important;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(62, 104, 255, 0.22) !important;
 }
 
 .p-button-label {
@@ -360,27 +367,69 @@
 
 /* Universal Primary CTA (works for PrimeVue Buttons and regular <a>/<button>) */
 .btn-primary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  background: #000000 !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease !important;
+  box-shadow: none !important;
+  transition: transform 0.2s ease, filter 0.2s ease, background-color 0.2s ease !important;
   will-change: transform;
 }
 
 .btn-primary:hover {
-  filter: brightness(0.98);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+  filter: brightness(1.03);
+  background: #111111 !important;
+  transform: translateY(-1px);
 }
 
 .btn-primary:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Universal Secondary CTA (works for PrimeVue Buttons and regular <a>/<button>) */
+.btn-secondary {
+  background: #c5d8ff !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  transition: transform 0.2s ease, filter 0.2s ease, background-color 0.2s ease !important;
+  will-change: transform;
+}
+
+.btn-secondary:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary[disabled],
+.btn-secondary:disabled,
+.btn-secondary[aria-disabled='true'],
+.btn-secondary.p-disabled {
+  opacity: 0.85;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* PrimeVue button variant support */
+.p-button.btn-secondary {
+  background: #c5d8ff !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+}
+
+.p-button.btn-secondary:hover:not(:disabled) {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+}
+
+.p-button.btn-secondary:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .btn-primary[disabled],
 .btn-primary:disabled,
-.btn-primary[aria-disabled="true"],
+.btn-primary[aria-disabled='true'],
 .btn-primary.p-disabled {
   opacity: 0.85;
   cursor: not-allowed;
@@ -396,20 +445,18 @@
 
 /* Primary CTA button (Tailwind-friendly) */
 .p-button.btn-primary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  background: #000000 !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+  box-shadow: none !important;
 }
 
 .p-button.btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+  background: #111111 !important;
+  transform: translateY(-1px);
 }
 
 .p-button.btn-primary:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
 }
 
 .p-button.btn-primary:disabled,
@@ -491,4 +538,3 @@ button:focus-visible,
   outline: none !important;
   box-shadow: none !important;
 }
-

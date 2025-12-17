@@ -38,7 +38,8 @@ export default defineNuxtConfig({
         clientPort: 24678
       },
       watch: {
-        usePolling: false,
+        // On Windows/WSL file events can be flaky; polling makes HMR + Tailwind rebuild reliable.
+        usePolling: true,
         interval: 100
       }
     },
@@ -58,6 +59,12 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap'
+        },
         { rel: 'stylesheet', href: `/primevue.css?v=${buildId}` }
       ]
     }

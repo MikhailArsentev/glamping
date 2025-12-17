@@ -9,6 +9,14 @@ export default {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        // Cap the site width to 1328px on large screens
+        screens: {
+          xl: '1328px',
+          '2xl': '1328px',
+        },
+      },
       colors: {
         primary: {
           DEFAULT: '#000000',
@@ -24,9 +32,19 @@ export default {
           light: '#FFFFFF',
           dark: '#E8EAEF',
         },
+        // Palette used in the header + hero to match the provided mock
+        brand: {
+          50: '#F0F3FF',  // hero card background
+          100: '#EEF2FF', // logo bubble background
+          200: '#C5D8FF', // secondary CTA background
+          600: '#3E68FF', // active link color
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        site: '1328px',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

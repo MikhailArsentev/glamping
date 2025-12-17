@@ -2,7 +2,7 @@
   <div class="min-h-screen pt-20">
     <!-- Hero Section -->
     <section class="bg-accent-light py-20">
-      <div class="container mx-auto px-4 lg:px-8">
+      <div class="site-container">
         <div class="max-w-4xl mx-auto text-center">
           <h1 
             class="text-4xl md:text-5xl font-bold text-primary mb-6"
@@ -18,7 +18,7 @@
 
     <!-- Content Section -->
     <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 lg:px-8">
+      <div class="site-container">
         <div class="max-w-4xl mx-auto prose prose-lg">
           <h2 class="text-2xl font-bold text-primary mb-4">1. Общие положения</h2>
           <p class="text-gray-600 mb-6">

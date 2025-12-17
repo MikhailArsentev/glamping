@@ -6,9 +6,30 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
+    font-family: 'Manrope', system-ui, sans-serif;
     @apply text-gray-900 bg-white;
+  }
+
+  :root {
+    font-family: 'Manrope', system-ui, sans-serif;
+  }
+
+  #__nuxt {
+    font-family: inherit;
+  }
+}
+
+@layer components {
+  /**
+   * Fluid site container:
+   * - grows with the viewport
+   * - caps at 1328px (via `max-w-site`)
+   * This avoids Tailwind's default `.container` step max-widths (1024/1280/...) that were shrinking the hero.
+   */
+  .site-container {
+    @apply w-full max-w-site mx-auto px-4 lg:px-8;
   }
 }
 
@@ -19,7 +40,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -28,3 +49,7 @@
   }
 }
 
+/* Custom classes */
+.bg-secondary {
+  background-color: #bac8ff;
+}
